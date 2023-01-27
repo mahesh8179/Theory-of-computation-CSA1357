@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int A(char*);
+int S(char*);
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    if (S(str) && strlen(str) == strlen(str))
+        printf("The string belongs to the language.\n");
+    else
+        printf("The string does not belong to the language.\n");
+
+    return 0;
+}
+
+int S(char *str) {
+    if (str[0] == '0' && A(str + 1))
+        return str[strlen(str) - 1] == '1';
+    return 0;
+}
+
+int A(char *str) {
+    if (str[0] == '0')
+        return A(str + 1);
+    if (str[0] == '1')
+        return A(str + 1);
+    if (str[0] == '\0')
+        return 1;
+    return 0;
+}
