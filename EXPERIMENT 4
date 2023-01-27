@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int checkCFG(char* str) {
+    int n = strlen(str);
+    if (n == 0) { // if the string is empty, it belongs to the language
+        return 1;
+    }
+    if (n % 2 == 1) { // if the string has odd length, it does not belong to the language
+        return 0;
+    }
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) { // check for 0 or 1 at even positions
+            if (str[i] != '0' && str[i] != '1') {
+                return 0;
+            }
+        } else { // check for opposite character at odd positions
+            if (str[i] != str[0] && str[i] != str[0] + 1) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    if (checkCFG(str)) {
+        printf("The string belongs to the language.\n");
+    } else {
+        printf("The string does not belong to the language.\n");
+    }
+    return 0;
+}
